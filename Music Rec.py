@@ -11,6 +11,8 @@ from sklearn.manifold import TSNE
 
 import warnings
 
+#can you see
+
 warnings.filterwarnings('ignore')
 
 tracks = pd.read_csv('data.csv')
@@ -25,13 +27,13 @@ tracks.isnull().sum()
 
 tracks.dropna(inplace = True)
 tracks.isnull().sum().plot.bar()
-#plt.show()
+plt.show()
 
 
 tracks = tracks.drop(['id', 'id_artists'], axis = 1)
 
 model = TSNE(n_components = 2, random_state = 0)
-tsne_data = model.fit_transform(a.head(500))
+tsne_data = model.fit_transform(tracks.head(500))
 plt.figure(figsize = (7, 7))
 plt.scatter(tsne_data[:,0], tsne_data[:,1])
 plt.show()
@@ -63,7 +65,7 @@ plt.tight_layout()
 plt.show()
 
 
-#%%capture
+#%capture
 song_vectorizer = CountVectorizer()
 song_vectorizer.fit(tracks['genres'])
 
@@ -110,7 +112,7 @@ def recommend_songs(song_name, data=tracks):
                    inplace=True)
 
   # First song will be the input song itself as the similarity will be highest.
-  display(data[['name', 'artists']][2:7])
+  print(data[['name', 'artists']][2:7])
 
 recommend_songs('Shape of You')
 
